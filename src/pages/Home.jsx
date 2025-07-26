@@ -92,14 +92,10 @@ export const Home = () => {
                       .get(
                         "https://galraemalrae.duckdns.org/place/recommendation",
                         {
-                          params: {
-                            requestDto: {
-                              mapX: String(latitude),
-                              mapY: String(longitude),
-                              placeType: String(Convert[place]),
-                              radius: String(distance),
-                            },
-                          },
+                          mapX: String(latitude),
+                          mapY: String(longitude),
+                          placeType: String(Convert[place]),
+                          radius: String(distance),
                         }
                       )
                       .then((res) => {

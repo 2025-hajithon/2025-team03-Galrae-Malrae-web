@@ -9,7 +9,7 @@ const TrackerWrapper = styled.div`
   align-items: flex-start; /* 아이콘과 라인 정렬 */
   max-width: 100%;
   padding: 20px 20px 20px 0;
-  background-color: #f7f7f7;
+
   border-radius: 12px;
   overflow-x: auto; /* 컨텐츠가 넘칠 경우 가로 스크롤 활성화 */
   white-space: nowrap; /* 아이템들이 한 줄에 표시되도록 강제 */
@@ -223,7 +223,7 @@ const ProgressTracker = () => {
           );
         })}
       </TrackerWrapper>
-      {/* <button
+      <button
         onClick={handleNextStep}
         style={{
           marginTop: "20px",
@@ -233,7 +233,7 @@ const ProgressTracker = () => {
         }}
       >
         다음 단계로
-      </button> */}
+      </button>
     </div>
   );
 };
