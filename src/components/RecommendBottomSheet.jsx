@@ -56,8 +56,8 @@ const Button = styled.button`
 
   padding: 16px 10px;
   border: 1px solid ${Color["gray-200"]};
-  background-color: ${(props) => (props.active ? Color.main : "white")};
-  color: ${(props) => (props.active ? "white" : "black")};
+  background-color: ${(props) => (props.$active ? Color.main : "white")};
+  color: ${(props) => (props.$active ? "white" : "black")};
 `;
 
 const Distance = styled.div`
