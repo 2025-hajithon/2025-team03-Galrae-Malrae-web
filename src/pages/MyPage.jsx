@@ -45,6 +45,7 @@ export const MyPage = () => {
                         src={clicked ? blackpencil : pencil}
                             alt={clicked ? "수정중" : "수정전"}
                             onClick={() => setClicked(!clicked)}
+                            style={{cursor:"pointer"}}
                             />
                     </InputWrapper>
                     
