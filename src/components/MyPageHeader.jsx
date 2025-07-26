@@ -8,7 +8,7 @@ export const MyPageHeader = ({headerText, rightButton}) =>{
     return(
         <>
             <Container>
-                <img src={leftArrow} alt="왼쪽 화살표" onClick={()=>nav(-1)} />
+                <img src={leftArrow} alt="왼쪽 화살표" style={{cursor:"pointer"}} onClick={()=>nav(-1)} />
                 <Text>{headerText}</Text>
                 <Image src={setting} alt="세팅" $isHidden={!rightButton} onClick={()=>nav("/setting")}/>
             </Container>
@@ -39,4 +39,5 @@ letter-spacing: -0.36px;`
 const Image = styled.img`
 visibility: ${props => props.$isHidden ? 'hidden' : 'visible'};
 pointer-events: ${props => props.$isHidden ? 'none' : 'auto'};
+cursor:pointer;
 `
