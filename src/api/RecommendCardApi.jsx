@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import apiClient from './apiClient';
+import {useState, useEffect} from "react";
+import apiClient from "./apiClient.js";
 import {RecommendCards} from "../components/RecommendCards";
-import { mockPlaces } from './TestCards';
+import {mockPlaces} from "./TestCards";
 
 export const RecommendCardApi = () => {
-    const [places, setPlaces] = useState(mockPlaces);
+  const [places, setPlaces] = useState(mockPlaces);
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await apiClient.get('/route/card');
-        setPlaces(response.data); 
+        const response = await apiClient.get("/route/card");
+        setPlaces(response.data);
       } catch (error) {
         console.error("데이터를 불러오는 데 실패했습니다.", error);
       }
@@ -18,5 +18,5 @@ export const RecommendCardApi = () => {
     fetchPlaces();
   }, []);
 
-  return <RecommendCards places={places} />
+  return <RecommendCards places={places} />;
 };
