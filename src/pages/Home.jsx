@@ -3,7 +3,9 @@ import {Map} from "../components/Map";
 import {FooterButton} from "../components/FooterButton";
 import styled, {keyframes} from "styled-components";
 import {useState, useEffect} from "react";
-import {BottomSheet} from "../components/BottomSheet";
+import {RecommendBottomSheet} from "../components/RecommendBottomSheet";
+import {Header} from "../components/Header";
+import ProgressTracker from "../components/ProgressTracker";
 
 const slideUp = keyframes`
   from {
@@ -21,6 +23,7 @@ const AnimatedContainer = styled.div`
   bottom: 95px;
   width: 100%;
   z-index: 10;
+  pointer-events: none;
   animation: ${({$animate}) => ($animate ? slideUp : "none")}
     ${({$duration}) => $duration || "0s"} ease-in-out forwards;
   visibility: ${({$animate}) => ($animate ? "visible" : "hidden")};
@@ -52,9 +55,11 @@ export const Home = () => {
   return (
     <Layout>
       <Wrapper>
+        <Header />
+        <ProgressTracker />
         <Map />
         <AnimatedContainer $animate={animate} $duration="1s">
-          {isOpen ? <BottomSheet /> : ""}
+          {isOpen ? <RecommendBottomSheet /> : null}
         </AnimatedContainer>
 
         <FooterButton
