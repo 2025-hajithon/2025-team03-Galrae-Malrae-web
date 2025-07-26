@@ -17,6 +17,7 @@ importers:
       jotai:
         specifier: ^2.12.5
         version: 2.12.5(@types/react@19.1.8)(react@19.1.0)
+
       jwt-decode:
         specifier: ^4.0.0
         version: 4.0.0
