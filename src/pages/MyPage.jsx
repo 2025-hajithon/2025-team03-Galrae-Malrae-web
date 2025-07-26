@@ -5,6 +5,7 @@ import exampleimg from '../assets/exampleimg.svg';
 import pencil from '../assets/pencil.svg';
 import blackpencil from '../assets/blackpencil.svg';
 import { Layout } from '../ui/Layout';
+import {RecommendCardApi} from "../api/RecommendCardApi";
 
 export const MyPage = () => {
     const [selected, setSelected] = useState(true);
@@ -63,6 +64,7 @@ export const MyPage = () => {
                 <Select onClick={() => setSelected(true)} $isSelected={selected === true}>추천지 카드</Select>
                 <Select onClick={() => setSelected(false)} $isSelected={selected === false}>방문 루트</Select>
             </List>
+            <RecommendCardApi />
             </Layout>
         </>
     );
