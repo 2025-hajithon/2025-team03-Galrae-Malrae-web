@@ -13,7 +13,12 @@ export const MyPage = () => {
 
     const [inputWidth, setInputWidth] = useState(0);
     const spanRef = useRef(null);
-
+    
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            setClicked(false);
+        }
+    }
     const handleNickName = (e) => {
         setNickName(e.target.value);
     };
@@ -39,6 +44,7 @@ export const MyPage = () => {
                             onChange={handleNickName}
                             disabled={!clicked}
                             style={{ width: `${inputWidth}px` }}
+                            onKeyDown={handleKeyDown}
                             $isClicked={clicked}
                         />
                         <img 
