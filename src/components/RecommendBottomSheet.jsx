@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import Color from "../ui/Color";
+import {useAtom} from "jotai";
 
 // ... 이전 Wrapper, Title 등 styled-components는 동일 ...
 
@@ -109,8 +110,9 @@ const RangeInput = styled.input.attrs({type: "range"})`
 `;
 
 export const RecommendBottomSheet = () => {
-  const [selectedType, setSelectedType] = useState("");
-  const [distance, setDistance] = useState(0);
+  const [selectedType, setSelectedType] = useStat("");
+  const setDistanceAtom = useDistancAtom(0);
+  const setPlace = useSetAtom(PlaceAtom);
   return (
     <Wrapper>
       <Title>어디로 추천해드릴까요</Title>
@@ -121,7 +123,10 @@ export const RecommendBottomSheet = () => {
             <Button
               key={label}
               $active={selectedType === label}
-              onClick={() => setSelectedType(label)}
+              onClick={() => {
+                setSelectedType(label);
+                setPlace(label);
+              }}
             >
               {label}
             </Button>
@@ -139,7 +144,9 @@ export const RecommendBottomSheet = () => {
           step="100"
           max="5000"
           value={distance}
-          onChange={(e) => setDistance(e.target.value)}
+          onChange={(e) => {
+            setDistance(e.target.value);
+          }}
         />
         <div
           style={{

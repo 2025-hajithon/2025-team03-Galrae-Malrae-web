@@ -42,6 +42,7 @@ const Wrapper = styled.div`
 
 export const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFirstOpen, setIsFirstopen] = useState(true);
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -64,7 +65,14 @@ export const Home = () => {
 
         <FooterButton
           name={"다음 목적지 추천"}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={
+            isFirstOpen
+              ? () => {
+                  setIsOpen(!isOpen);
+                  setIsFirstopen(!isFirstOpen);
+                }
+              : () => {}
+          }
         />
       </Wrapper>
     </Layout>
