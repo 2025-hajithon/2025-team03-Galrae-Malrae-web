@@ -1,13 +1,34 @@
 import {useState} from 'react';
 import {Layout} from "../ui/Layout";
+import { FooterButton } from '../components/FooterButton';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Color from "../ui/Color";
 
 
 const SignUp = () =>{
+    const nav = useNavigate();
     const [nickName, setNickName] = useState('');
+    const [errormessage, setErrormessage] = useState(false);
     const handleNickName = (e) =>{
         setNickName(e.target.value);
+        if (errormessage) {
+            setErrormessage(false);
+        }
     }
+
+    const handleSubmit = () => {
+        if (!nickName.trim()) {
+            setErrormessage(true);
+            return;
+        }
+        console.log(`서버로 전송할 닉네임: ${nickName}`); // 나중에 서버에 전달해야함
+    }
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
 
     return(
         <>
@@ -19,10 +40,16 @@ const SignUp = () =>{
                 type="text"
                 placeholder='입력'
                 value={nickName}
-                onChange={handleNickName}/>
-                <P>최대 10자</P>
+                onChange={handleNickName}
+                onKeyDown={handleKeyDown}
+                $isError={errormessage}/>
+                {errormessage ? (
+                    <ErrorMessage>올바르지 않은 닉네임입니다.</ErrorMessage>
+                ) : (
+                    <P>최대 10자</P>
+                )}
             </div>
-            <Confirm />
+            <FooterButton onClick={handleSubmit} name={"확인"} />
         </Layout>
         </>
     )
@@ -52,9 +79,13 @@ align-items: flex-end;
 gap: 8px;
 padding-left: 12px;
 border-width: 0;
-border-bottom: 1px solid var(--Main, #F18E2B);
+border-bottom: 1px solid ${props => props.$isError ? '#FF5555' : Color['gray-400']};
+caret-color: var(--Main, #F18E2B);
+
 &:focus{
     outline: none;
+    border-bottom: 1px solid ${props => props.$isError ? '#FF5555' : 'var(--Main, #F18E2B)'};
+    color: ${Color.black};
 };
 
 
@@ -80,3 +111,7 @@ line-height: 150%; /* 18px */
 letter-spacing: -0.36px;
 
 text-align: left;`
+
+const ErrorMessage = styled(P)`
+    color: ${Color.error};
+`;
