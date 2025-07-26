@@ -1,3 +1,4 @@
+import axios from "axios";
 import {Layout} from "../ui/Layout";
 import {Map} from "../components/Map";
 import {FooterButton} from "../components/FooterButton";
@@ -6,7 +7,14 @@ import {useState, useEffect} from "react";
 import {RecommendBottomSheet} from "../components/RecommendBottomSheet";
 import {Header} from "../components/Header";
 import ProgressTracker from "../components/ProgressTracker";
-
+import {useAtom} from "jotai";
+import {
+  PlaceAtom,
+  DistanceAtom,
+  LatitudeAtom,
+  LongitudeAtom,
+} from "../store/Atom";
+import {Convert} from "../constants/Convert";
 const slideUp = keyframes`
   from {
     transform: translateY(40%);
@@ -44,7 +52,10 @@ export const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFirstOpen, setIsFirstopen] = useState(true);
   const [animate, setAnimate] = useState(false);
-
+  const [place, setPlace] = useAtom(PlaceAtom);
+  const [distance, setDistance] = useAtom(DistanceAtom);
+  const [latitude] = useAtom(LatitudeAtom);
+  const [longitude] = useAtom(LongitudeAtom);
   useEffect(() => {
     if (isOpen) {
       setAnimate(true);
@@ -71,7 +82,36 @@ export const Home = () => {
                   setIsOpen(!isOpen);
                   setIsFirstopen(!isFirstOpen);
                 }
-              : () => {}
+              : () => {
+                  if (place != "" && distance != 0) {
+                    console.log(latitude);
+                    console.log(longitude);
+                    console.log(Convert[place]);
+                    console.log(distance);
+                    axios
+                      .get(
+                        "https://galraemalrae.duckdns.org/place/recommendation",
+                        {
+                          params: {
+                            requestDto: {
+                              mapX: String(latitude),
+                              mapY: String(longitude),
+                              placeType: String(Convert[place]),
+                              radius: String(distance),
+                            },
+                          },
+                        }
+                      )
+                      .then((res) => {
+                        console.log("백엔드 응답:", res.data);
+                      })
+                      .catch((err) => {
+                        console.error("백엔드 요청 실패:", err);
+                      });
+                  } else {
+                    alert("장소와 거리를 선택해주세요");
+                  }
+                }
           }
         />
       </Wrapper>
