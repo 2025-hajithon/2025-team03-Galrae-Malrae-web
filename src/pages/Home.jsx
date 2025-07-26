@@ -37,8 +37,5 @@ const Wrapper = styled.div`
 `;
 
 export const Home = () => {
-  return (
-  <Layout>
-  </Layout>
-  )
+  return <Layout></Layout>;
 };
