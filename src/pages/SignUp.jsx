@@ -4,10 +4,26 @@ import { FooterButton } from '../components/FooterButton';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Color from "../ui/Color";
+import apiClient from '../api/apiClient';
 import erroricon from "../assets/erroricon.svg";
 import xicon from "../assets/xicon.svg";
 import checkicon from "../assets/checkicon.svg";
 
+
+const SignUpUser = async (nickName) =>{
+    
+            try{
+                const res= await apiClient.post("/auth/signup",{
+                    username: nickName
+                });
+                console.log("회원가입 성공",res.data);
+                return res.data
+            } catch (error){
+                console.log("회원가입 실패:",error.res ? error.res.data : error.message);
+                throw(error);
+            }
+        
+}
 
 const SignUp = () =>{
     const nav = useNavigate();
@@ -20,12 +36,17 @@ const SignUp = () =>{
         }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!nickName.trim()) {
             setErrormessage(true);
             return;
         }
-        console.log(`서버로 전송할 닉네임: ${nickName}`); // 나중에 서버에 전달해야함
+        try{
+            await SignUpUser(nickName);
+            nav("/");
+        } catch (error){
+            setErrormessage(true);
+        }
     }
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -63,6 +84,8 @@ const SignUp = () =>{
 }
 
 export default SignUp;
+
+
 
 const Wrapper = styled.div`
   position: relative;
