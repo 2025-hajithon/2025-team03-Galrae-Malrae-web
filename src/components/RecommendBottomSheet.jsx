@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useState} from "react";
 import Color from "../ui/Color";
 import {useAtom} from "jotai";
+import {DistanceAtom, PlaceAtom} from "../store/Atom"; // 경로는 실제 atoms 정의 위치로 수정
 
 // ... 이전 Wrapper, Title 등 styled-components는 동일 ...
 
@@ -110,9 +111,9 @@ const RangeInput = styled.input.attrs({type: "range"})`
 `;
 
 export const RecommendBottomSheet = () => {
-  const [selectedType, setSelectedType] = useStat("");
-  const setDistanceAtom = useDistancAtom(0);
-  const setPlace = useSetAtom(PlaceAtom);
+  const [selectedType, setSelectedType] = useState("");
+  const [distance, setDistance] = useAtom(DistanceAtom);
+  const [, setPlace] = useAtom(PlaceAtom);
   return (
     <Wrapper>
       <Title>어디로 추천해드릴까요</Title>
