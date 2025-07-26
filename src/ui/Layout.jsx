@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 
 const MobileView = styled.div`
   width: 393px;
+  max-width: 393px;
   height: 100vh;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
