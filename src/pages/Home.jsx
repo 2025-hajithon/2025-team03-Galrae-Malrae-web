@@ -27,7 +27,7 @@ const AnimatedContainer = styled.div`
   animation: ${({$animate}) => ($animate ? slideUp : "none")}
     ${({$duration}) => $duration || "0s"} ease-in-out forwards;
   visibility: ${({$animate}) => ($animate ? "visible" : "hidden")};
-  pointer-events: ${({$animate}) => ($animate ? "auto" : "none")};
+  pointer-events: auto;
 `;
 
 const Wrapper = styled.div`
@@ -46,9 +46,9 @@ export const Home = () => {
 
   useEffect(() => {
     if (isOpen) {
+      setAnimate(true);
+    } else {
       setAnimate(false);
-      const timeoutId = setTimeout(() => setAnimate(true), 10);
-      return () => clearTimeout(timeoutId);
     }
   }, [isOpen]);
 
