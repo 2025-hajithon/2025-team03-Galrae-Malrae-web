@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import apiClient from "./apiClient";
+import apiClient from "../api/ApiClient";
 import {RecommendCards} from "../components/RecommendCards";
 import {mockPlaces} from "./TestCards";
 
