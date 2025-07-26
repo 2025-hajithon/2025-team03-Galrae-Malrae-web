@@ -87,7 +87,7 @@ const Distance = styled.div`
 const RangeInput = styled.input.attrs({type: "range"})`
   appearance: none;
   width: 100%;
-  height: 8px;
+  height: 12px;
   border-radius: 4px;
   background: ${(props) =>
     `linear-gradient(to right, ${Color.main} 0%, ${Color.main} ${
