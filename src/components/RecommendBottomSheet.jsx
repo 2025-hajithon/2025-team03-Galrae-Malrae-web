@@ -2,19 +2,6 @@ import styled from "styled-components";
 import {useState} from "react";
 import Color from "../ui/Color";
 
-const ModalBackdrop = styled.div`
-  position: fixed; /* 화면 전체에 고정 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* 다른 요소들 위에 오도록 설정 */
-`;
-
 // ... 이전 Wrapper, Title 등 styled-components는 동일 ...
 
 const Wrapper = styled.div`
@@ -121,7 +108,7 @@ const RangeInput = styled.input.attrs({type: "range"})`
   }
 `;
 
-export const BottomSheet = () => {
+export const RecommendBottomSheet = () => {
   const [selectedType, setSelectedType] = useState("");
   const [distance, setDistance] = useState(0);
   return (
@@ -133,7 +120,7 @@ export const BottomSheet = () => {
           {["관광지", "음식점", "쇼핑", "문화시설"].map((label) => (
             <Button
               key={label}
-              active={selectedType === label}
+              $active={selectedType === label}
               onClick={() => setSelectedType(label)}
             >
               {label}

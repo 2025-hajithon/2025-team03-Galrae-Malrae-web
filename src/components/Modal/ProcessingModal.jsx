@@ -12,7 +12,6 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-
 // 캐릭터가 살짝 흔들리는 애니메이션
 const wiggle = keyframes`
   0%, 100% {
@@ -30,7 +29,7 @@ const ModalBackdrop = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(256, 256, 256, 0.33);
+  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,19 +58,9 @@ const CharacterImage = styled.img`
   object-fit: contain; // 이미지 비율을 유지하면서 컨테이너에 맞춤
 `;
 
-// 메시지를 보여주는 텍스트 박스
-const MessageBox = styled.div`
-  padding: 12px 24px;
-
-  color: #333;
-  font-size: 2;
-  font-weight: 600;
-  text-align: center;
-`;
-
 // --- 메인 모달 컴포넌트 ---
 
-export const CheckModal = ({isOpen = true}) => {
+export const ProcessingModal = ({isOpen = true}) => {
   // isOpen prop이 false이면 모달을 렌더링하지 않음
   if (!isOpen) {
     return null;
@@ -81,9 +70,8 @@ export const CheckModal = ({isOpen = true}) => {
     <ModalBackdrop>
       <ModalContent>
         <CharacterWrapper>
-          <CharacterImage src="/Character.svg" alt="로딩 캐릭터" />
+          <CharacterImage src="/Pending.svg" alt="pending" />
         </CharacterWrapper>
-        <MessageBox>랜덤 목적지를 찾는중이에요...</MessageBox>
       </ModalContent>
     </ModalBackdrop>
   );
