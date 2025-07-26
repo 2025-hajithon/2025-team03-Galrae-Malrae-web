@@ -3,9 +3,10 @@ import {Map} from "../components/Map";
 import {FooterButton} from "../components/FooterButton";
 import styled, {keyframes} from "styled-components";
 import {useState, useEffect} from "react";
-import {BottomSheet} from "../components/BottomSheet";
+import {RecommendBottomSheet} from "../components/RecommendBottomSheet";
 import {CheckModal} from "../components/Modal/CheckModal";
-
+import {ResultBottomSheet} from "../components/ResultBottomSheet";
+import {ProcessingModal} from "../components/Modal/ProcessingModal";
 const slideUp = keyframes`
   from {
     transform: translateY(40%);
@@ -40,6 +41,13 @@ const Wrapper = styled.div`
 export const Test = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [animate, setAnimate] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate backend fetch
+    const fetchTimeout = setTimeout(() => setIsLoading(false), 2000); // Replace with real fetch
+    return () => clearTimeout(fetchTimeout);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -53,10 +61,11 @@ export const Test = () => {
     <Layout>
       <Wrapper>
         <Map />
-        <CheckModal />
+        {isLoading && <ProcessingModal />}
         <AnimatedContainer $animate={animate} $duration="1s">
-          {isOpen ? <BottomSheet /> : ""}
+          {isOpen ? <RecommendBottomSheet /> : ""}
         </AnimatedContainer>
+        <ResultBottomSheet />
 
         <FooterButton
           name={"다음 목적지 추천"}

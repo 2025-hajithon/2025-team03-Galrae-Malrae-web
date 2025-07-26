@@ -18,17 +18,3 @@ export const SearchInput = ({placeholderText}) =>{
         </>
     )
 }
-
-
-const Input = styled.input`
-display: flex;
-width: 340px;
-flex-direction: column;
-align-items: flex-end;
-gap: 8px;
-padding-left: 12px;
-border-width: 0;
-border-bottom: 1px solid var(--Main, #F18E2B);
-&:focus{
-    outline: none;
-};
