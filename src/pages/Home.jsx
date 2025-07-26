@@ -37,30 +37,8 @@ const Wrapper = styled.div`
 `;
 
 export const Home = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setAnimate(false);
-      const timeoutId = setTimeout(() => setAnimate(true), 10);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [isOpen]);
-
   return (
-    <Layout>
-      <Wrapper>
-        <Map />
-        <AnimatedContainer $animate={animate} $duration="1s">
-          {isOpen ? <BottomSheet /> : ""}
-        </AnimatedContainer>
-
-        <FooterButton
-          name={"다음 목적지 추천"}
-          onClick={() => setIsOpen(!isOpen)}
-        />
-      </Wrapper>
-    </Layout>
-  );
+  <Layout>
+  </Layout>
+  )
 };
