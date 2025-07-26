@@ -4,6 +4,7 @@ import {FooterButton} from "../components/FooterButton";
 import styled, {keyframes} from "styled-components";
 import {useState, useEffect} from "react";
 import {BottomSheet} from "../components/BottomSheet";
+import {CheckModal} from "../components/Modal/CheckModal";
 
 const slideUp = keyframes`
   from {
@@ -32,12 +33,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  min-height: 100vh;
   width: 100%;
   justify-content: flex-end;
 `;
 
-export const Home = () => {
+export const Test = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [animate, setAnimate] = useState(false);
 
@@ -53,6 +53,7 @@ export const Home = () => {
     <Layout>
       <Wrapper>
         <Map />
+        <CheckModal />
         <AnimatedContainer $animate={animate} $duration="1s">
           {isOpen ? <BottomSheet /> : ""}
         </AnimatedContainer>
