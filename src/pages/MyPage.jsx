@@ -4,6 +4,7 @@ import { MyPageHeader } from '../components/MyPageHeader';
 import exampleimg from '../assets/exampleimg.svg';
 import pencil from '../assets/pencil.svg';
 import blackpencil from '../assets/blackpencil.svg';
+import { Layout } from '../ui/Layout';
 
 export const MyPage = () => {
     const [selected, setSelected] = useState(true);
@@ -26,6 +27,7 @@ export const MyPage = () => {
 
     return (
         <>
+            <Layout>
             <MyPageHeader headerText={"마이페이지"} rightButton={true} />
             <Container>
                 <img src={exampleimg} alt={"프로필 사진"} />
@@ -54,6 +56,7 @@ export const MyPage = () => {
                 <Select onClick={() => setSelected(true)} $isSelected={selected === true}>추천지 카드</Select>
                 <Select onClick={() => setSelected(false)} $isSelected={selected === false}>방문 루트</Select>
             </List>
+            </Layout>
         </>
     );
 };
