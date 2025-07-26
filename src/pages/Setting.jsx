@@ -11,6 +11,7 @@ export const Setting = () => {
   return (
     <Layout>
       <MyPageHeader headerText={"설정"} rightButton={false} />
+      <Wrapper>
       <List>
         <Gps>
           <p>GPS 권한</p>
@@ -24,9 +25,19 @@ export const Setting = () => {
         <p style={{padding: "16px 0", margin: "0"}}>데이터 초기화</p>
         <Logout>로그아웃</Logout>
       </List>
+      </Wrapper>
     </Layout>
   );
 };
+
+const Wrapper = styled.div`
+position: relative;
+display: flex;
+flex-direction: column;
+min-height: calc(100vh - 53px); 
+width: 100%;
+justify-content: flex-start;
+`;
 
 const List = styled.ul`
   display: flex;
