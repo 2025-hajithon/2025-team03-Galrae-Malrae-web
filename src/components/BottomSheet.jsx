@@ -2,6 +2,19 @@ import styled from "styled-components";
 import {useState} from "react";
 import Color from "../ui/Color";
 
+const ModalBackdrop = styled.div`
+  position: fixed; /* 화면 전체에 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 요소들 위에 오도록 설정 */
+`;
+
 // ... 이전 Wrapper, Title 등 styled-components는 동일 ...
 
 const Wrapper = styled.div`
@@ -136,6 +149,7 @@ export const BottomSheet = () => {
         {/* 👇 기존 input을 새로 만든 RangeInput으로 교체 */}
         <RangeInput
           min="0"
+          step="100"
           max="5000"
           value={distance}
           onChange={(e) => setDistance(e.target.value)}
